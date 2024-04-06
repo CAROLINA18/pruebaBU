@@ -1,0 +1,18 @@
+package com.BU.springboot.backend.apirest.models.services;
+
+import java.util.List;
+
+import com.BU.springboot.backend.apirest.models.entity.Factura;
+import com.BU.springboot.backend.apirest.models.entity.Producto;
+
+public interface IFacturaService {
+	
+public Factura findFacturaById(Long id);
+	
+	public Factura saveFactura(Factura factura);
+	
+	public void deleteFacturaById(Long id);
+	
+	public List<Producto> findProductoByNombre(String term);
+
+}

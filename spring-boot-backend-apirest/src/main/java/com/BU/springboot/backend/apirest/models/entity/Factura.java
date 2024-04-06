@@ -53,17 +53,10 @@ public class Factura implements Serializable {
 	private List<ItemFactura> items;
 
 	
-	//Patron singleton dejamos el constructor privado y lo instanciamos solo una vez con el metodo get instance
-	
-	private static Factura instancia = new Factura();
-	
-	private Factura() {
+	public Factura() {
 		items = new ArrayList<>();
 	}
 	
-	public static Factura getInstancia() {
-		return instancia;
-	}
 
 	@PrePersist
 	public void prePersist() {

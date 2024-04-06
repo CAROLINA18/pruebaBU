@@ -1,11 +1,16 @@
 package com.BU.springboot.backend.apirest.models.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.BU.springboot.backend.apirest.DTO.FacturaDTO;
+import com.BU.springboot.backend.apirest.DTO.ProductoDTO;
+import com.BU.springboot.backend.apirest.DTO.RegionDTO;
 import com.BU.springboot.backend.apirest.models.dao.IFacturaDao;
 import com.BU.springboot.backend.apirest.models.dao.IProductoDao;
 import com.BU.springboot.backend.apirest.models.entity.Factura;
@@ -20,17 +25,26 @@ public class FacturaServiceImpl implements IFacturaService  {
 	@Autowired
 	private IProductoDao productoDao;
 	
+	@Autowired
+    private ModelMapper modelMapper;
+	
 	@Override
 	@Transactional(readOnly = true)
-	public Factura findFacturaById(Long id) {
-		return facturaDao.findById(id).orElse(null);
-	}
+    public FacturaDTO findFacturaById(Long id) {
+        Factura factura = facturaDao.findById(id).orElse(null);
+        if (factura != null) {
+            return modelMapper.map(factura, FacturaDTO.class);
+        }
+        return null;
+    }
 
 	@Override
 	@Transactional
-	public Factura saveFactura(Factura factura) {
-		return facturaDao.save(factura);
-	}
+    public FacturaDTO saveFactura(FacturaDTO facturaDTO) {
+        Factura factura = modelMapper.map(facturaDTO, Factura.class);
+        factura = facturaDao.save(factura);
+        return modelMapper.map(factura, FacturaDTO.class);
+    }
 
 	@Override
 	@Transactional
@@ -40,7 +54,16 @@ public class FacturaServiceImpl implements IFacturaService  {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Producto> findProductoByNombre(String term) {
-		return productoDao.findByNombreContainingIgnoreCase(term);
-	}
+    public List<ProductoDTO> findProductoByNombre(String term) {
+        List<Producto> productos = productoDao.findByNombre(term);
+        return productos.stream()
+                       .map(this::convertToDto)
+                       .collect(Collectors.toList());
+    }
+
+    private ProductoDTO convertToDto(Producto producto) {
+        ProductoDTO productoDTO = modelMapper.map(producto, ProductoDTO.class);
+        return productoDTO;
+    }
+	
 }

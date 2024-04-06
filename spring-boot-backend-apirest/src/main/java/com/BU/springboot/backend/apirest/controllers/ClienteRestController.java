@@ -34,6 +34,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.BU.springboot.backend.apirest.DTO.ClienteDTO;
+import com.BU.springboot.backend.apirest.DTO.RegionDTO;
 import com.BU.springboot.backend.apirest.models.entity.Cliente;
 import com.BU.springboot.backend.apirest.models.entity.Region;
 import com.BU.springboot.backend.apirest.models.services.IClienteService;
@@ -53,12 +55,12 @@ public class ClienteRestController {
 	
 
 	@GetMapping("/clientes")
-	public List<Cliente> index() {
+	public List<ClienteDTO> index() {
 		return clienteService.findAll();
 	}
 	
 	@GetMapping("/clientes/page/{page}")
-	public Page<Cliente> index(@PathVariable Integer page) {
+	public Page<ClienteDTO> index(@PathVariable Integer page) {
 		Pageable pageable = PageRequest.of(page, 4);
 		return clienteService.findAll(pageable);
 	}
@@ -67,7 +69,7 @@ public class ClienteRestController {
 	@GetMapping("/clientes/{id}")
 	public ResponseEntity<?> show(@PathVariable Long id) {
 		
-		Cliente cliente = null;
+		ClienteDTO cliente = null;
 		Map<String, Object> response = new HashMap<>();
 		
 		try {
@@ -83,14 +85,14 @@ public class ClienteRestController {
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
+		return new ResponseEntity<ClienteDTO>(cliente, HttpStatus.OK);
 	}
 	
 	@Secured("ROLE_ADMIN")
 	@PostMapping("/clientes")
-	public ResponseEntity<?> create(@Valid @RequestBody Cliente cliente, BindingResult result) {
+	public ResponseEntity<?> create(@Valid @RequestBody ClienteDTO cliente, BindingResult result) {
 		
-		Cliente clienteNew = null;
+		ClienteDTO clienteNew = null;
 		Map<String, Object> response = new HashMap<>();
 		
 		if(result.hasErrors()) {
@@ -119,11 +121,11 @@ public class ClienteRestController {
 	
 	@Secured("ROLE_ADMIN")
 	@PutMapping("/clientes/{id}")
-	public ResponseEntity<?> update(@Valid @RequestBody Cliente cliente, BindingResult result, @PathVariable Long id) {
+	public ResponseEntity<?> update(@Valid @RequestBody ClienteDTO cliente, BindingResult result, @PathVariable Long id) {
 
-		Cliente clienteActual = clienteService.findById(id);
+		ClienteDTO clienteActual = clienteService.findById(id);
 
-		Cliente clienteUpdated = null;
+		ClienteDTO clienteUpdated = null;
 
 		Map<String, Object> response = new HashMap<>();
 
@@ -173,7 +175,7 @@ public class ClienteRestController {
 		Map<String, Object> response = new HashMap<>();
 		
 		try {
-			Cliente cliente = clienteService.findById(id);
+			ClienteDTO cliente = clienteService.findById(id);
 			String nombreFotoAnterior = cliente.getFoto();
 			
 			uploadService.eliminar(nombreFotoAnterior);
@@ -195,7 +197,7 @@ public class ClienteRestController {
 	public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") Long id){
 		Map<String, Object> response = new HashMap<>();
 		
-		Cliente cliente = clienteService.findById(id);
+		ClienteDTO cliente = clienteService.findById(id);
 		
 		if(!archivo.isEmpty()) {
 
@@ -243,7 +245,8 @@ public class ClienteRestController {
 	
 	@Secured("ROLE_ADMIN")
 	@GetMapping("/clientes/regiones")
-	public List<Region> listarRegiones(){
-		return clienteService.findAllRegiones();
+	public List<RegionDTO> listarRegiones() {
+	    List<RegionDTO> regiones = clienteService.findAllRegiones();
+	    return regiones;
 	}
 }

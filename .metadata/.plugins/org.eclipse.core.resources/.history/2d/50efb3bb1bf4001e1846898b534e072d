@@ -1,0 +1,29 @@
+package com.BU.springboot.backend.apirest.mapper;
+
+import org.mapstruct.InheritInverseConfiguration;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
+
+import com.BU.springboot.backend.apirest.DTO.ItemFacturaDTO;
+import com.BU.springboot.backend.apirest.DTO.ProductoDTO;
+import com.BU.springboot.backend.apirest.models.entity.ItemFactura;
+import com.BU.springboot.backend.apirest.models.entity.Producto;
+
+public interface ProductoMapper {
+	
+	@Mappings(
+            {
+                    @Mapping(source = "id", target = "id"),
+                    @Mapping(source = "nombre", target = "nombre"),
+                    @Mapping(source = "precio", target = "precio"),
+                    @Mapping(source = "createAt", target = "createAt"),
+                   
+            }
+    )
+    ProductoDTO toProducto(Producto producto);
+    Iterable<ProductoDTO> toProductos (Iterable<Producto> productos);
+
+    @InheritInverseConfiguration
+    Producto toProductoEntidad (ProductoDTO productoDTO);
+
+}

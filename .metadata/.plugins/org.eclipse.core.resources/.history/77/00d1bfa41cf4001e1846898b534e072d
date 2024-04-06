@@ -1,0 +1,28 @@
+package com.BU.springboot.backend.apirest.models.services;
+
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import com.BU.springboot.backend.apirest.DTO.ClienteDTO;
+import com.BU.springboot.backend.apirest.models.entity.Cliente;
+import com.BU.springboot.backend.apirest.models.entity.Factura;
+import com.BU.springboot.backend.apirest.models.entity.Producto;
+import com.BU.springboot.backend.apirest.models.entity.Region;
+
+public interface IClienteService {
+
+	public List<ClienteDTO> findAll();
+	
+	public Page<ClienteDTO> findAll(Pageable pageable);
+	
+	public ClienteDTO findById(Long id);
+	
+	public ClienteDTO save(Cliente cliente);
+	
+	public void delete(Long id);
+	
+	public List<RegionDTO> findAllRegiones();
+	
+}

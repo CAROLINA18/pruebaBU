@@ -1,0 +1,47 @@
+package com.BU.springboot.backend.apirest.models.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.BU.springboot.backend.apirest.DTO.FacturaDTO;
+import com.BU.springboot.backend.apirest.models.dao.IFacturaDao;
+import com.BU.springboot.backend.apirest.models.dao.IProductoDao;
+import com.BU.springboot.backend.apirest.models.entity.Factura;
+import com.BU.springboot.backend.apirest.models.entity.Producto;
+
+@Service
+public class FacturaServiceImpl implements IFacturaService  {
+
+	@Autowired
+	private IFacturaDao facturaDao;
+	
+	@Autowired
+	private IProductoDao productoDao;
+	
+	@Override
+	@Transactional(readOnly = true)
+	public FacturaDTO findFacturaById(Long id) {
+		return facturaDao.findById(id).orElse(null);
+	}
+
+	@Override
+	@Transactional
+	public FacturaDTO saveFactura(FacturaDTO factura) {
+		return facturaDao.save(factura);
+	}
+
+	@Override
+	@Transactional
+	public void deleteFacturaById(Long id) {
+		facturaDao.deleteById(id);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Producto> findProductoByNombre(String term) {
+		return productoDao.findByNombreContainingIgnoreCase(term);
+	}
+}

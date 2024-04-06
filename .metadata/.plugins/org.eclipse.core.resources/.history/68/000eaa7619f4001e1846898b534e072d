@@ -1,0 +1,29 @@
+package com.BU.springboot.backend.apirest.mapper;
+
+import org.mapstruct.InheritInverseConfiguration;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
+
+import com.BU.springboot.backend.apirest.DTO.ClienteDTO;
+import com.BU.springboot.backend.apirest.DTO.RegionDTO;
+import com.BU.springboot.backend.apirest.models.entity.Cliente;
+import com.BU.springboot.backend.apirest.models.entity.Region;
+
+@Mapper(componentModel = "spring" )
+public interface RegionMapper {
+	@Mappings(
+            {
+                    @Mapping(source = "id", target = "id"),
+                    @Mapping(source = "nombre", target = "nombre"),
+                    
+
+            }
+    )
+    RegionDTO toRegion(Region region);
+    Iterable<RegionDTO> toRegiones (Iterable<Region> regiones);
+
+    @InheritInverseConfiguration
+    Region toRegionesEntidad (RegionDTO regionDTO);
+
+}

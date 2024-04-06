@@ -1,0 +1,33 @@
+package com.BU.springboot.backend.apirest.mapper;
+
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
+
+import com.BU.springboot.backend.apirest.DTO.ClienteDTO;
+import com.BU.springboot.backend.apirest.models.entity.Cliente;
+
+
+@Mapper(componentModel = "spring" , uses = {RegionMapper.class, FacturaMapper.class})
+public class ClienteMapper {
+	
+	@Mappings(
+            {
+                    @Mapping(source = "id", target = "id"),
+                    @Mapping(source = "nombre", target = "nombre"),
+                    @Mapping(source = "apellido", target = "apellido"),
+                    @Mapping(source = "email", target = "email"),
+                    @Mapping(source = "createAt", target = "createAt"),
+                    @Mapping(source = "foto", target = "foto"),
+                    @Mapping(source = "region", target = "region"),
+                    @Mapping(source = "facturas", target = "facturas"),
+
+            }
+    )
+    ClienteDTO toCliente(Cliente cliente);
+    Iterable<ClienteDTO> toClientes (Iterable<Cliente> clientes);
+
+    @InheritInverseConfiguration
+    EmployeeEntity toEmployeesEntity (Employee employee);
+
+}
