@@ -1,0 +1,62 @@
+package com.BU.springboot.backend.apirest.models.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.BU.springboot.backend.apirest.DTO.ClienteDTO;
+import com.BU.springboot.backend.apirest.models.dao.IClienteDao;
+import com.BU.springboot.backend.apirest.models.dao.IFacturaDao;
+import com.BU.springboot.backend.apirest.models.dao.IProductoDao;
+import com.BU.springboot.backend.apirest.models.entity.Cliente;
+import com.BU.springboot.backend.apirest.models.entity.Factura;
+import com.BU.springboot.backend.apirest.models.entity.Producto;
+import com.BU.springboot.backend.apirest.models.entity.Region;
+
+@Service
+public class ClienteServiceImpl implements IClienteService {
+
+	@Autowired
+	private IClienteDao clienteDao;
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<ClienteDTO> findAll() {
+		return (List<ClienteDTO>) clienteDao.findAll();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Page<ClienteDTO> findAll(Pageable pageable) {
+		return clienteDao.findAll(pageable);
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public ClienteDTO findById(Long id) {
+		return clienteDao.findById(id).orElse(null);
+	}
+
+	@Override
+	@Transactional
+	public ClienteDTO save(ClienteDTO cliente) {
+		return clienteDao.save(cliente);
+	}
+
+	@Override
+	@Transactional
+	public void delete(Long id) {
+		clienteDao.deleteById(id);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Region> findAllRegiones() {
+		return clienteDao.findAllRegiones();
+	}
+
+}

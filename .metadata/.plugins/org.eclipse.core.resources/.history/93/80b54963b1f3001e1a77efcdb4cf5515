@@ -1,0 +1,28 @@
+package com.BU.springboot.backend.apirest.DTO;
+
+import java.sql.Date;
+import java.util.List;
+
+
+
+import lombok.Data;
+
+
+@Data
+public class ClienteDTO {
+	
+	
+
+	public ClienteDTO(Long id2, String nombre2, String apellido2, String email2, java.util.Date createAt2, String foto2,
+			RegionDTO dto, List<FacturaDTO> convertirLista) {
+		// TODO Auto-generated constructor stub
+	}
+	private Long id;
+    private String nombre;
+    private String apellido;
+    private String email;
+    private Date createAt;
+    private String foto;
+    private RegionDTO region;
+    private List<FacturaDTO> facturas;
+}

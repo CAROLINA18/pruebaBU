@@ -1,0 +1,22 @@
+package com.BU.springboot.backend.apirest.DTO;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.BU.springboot.backend.apirest.models.entity.Cliente;
+import com.BU.springboot.backend.apirest.models.entity.Factura;
+
+public class ClienteConverter {
+    public static ClienteDTO toDTO(Cliente cliente) {
+        return new ClienteDTO(
+            cliente.getId(),
+            cliente.getNombre(),
+            cliente.getApellido(),
+            cliente.getEmail(),
+            cliente.getCreateAt(),
+            cliente.getFoto(),
+            RegionConverter.toDTO(cliente.getRegion()),
+            FacturaConverter.convertirLista(cliente.getFacturas())
+        );
+    }
+}

@@ -1,0 +1,26 @@
+package com.BU.springboot.backend.apirest.DTO;
+
+import java.util.Date;
+import java.util.List;
+
+import lombok.Data;
+
+@Data
+public class FacturaDTO {
+    public FacturaDTO(Long id, String descripcion, String observacion, Date createAt, ClienteDTO cliente,
+			List<ItemFacturaDTO> items) {
+		this.id = id;
+		this.descripcion = descripcion;
+		this.observacion = observacion;
+		this.createAt = createAt;
+		this.cliente = cliente;
+		this.items = items;
+	}
+	private Long id;
+    private String descripcion;
+    private String observacion;
+    private Date createAt;
+    private ClienteDTO cliente;
+    private List<ItemFacturaDTO> items;
+
+}

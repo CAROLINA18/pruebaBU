@@ -1,0 +1,13 @@
+package com.BU.springboot.backend.apirest.DTO;
+
+import com.BU.springboot.backend.apirest.models.entity.ItemFactura;
+
+public class ItemFacturaConverter {
+    public static ItemFacturaDTO toDTO(ItemFactura item) {
+        return new ItemFacturaDTO(
+            item.getId(),
+            item.getCantidad(),
+            ProductoConverter.toDTO(item.getProducto())
+        );
+    }
+}

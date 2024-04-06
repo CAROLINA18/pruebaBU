@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.BU.springboot.backend.apirest.models.services.IFacturaService"/>
+    <fullyQualifiedTypeName name="lombok.Getter"/>
+    <fullyQualifiedTypeName name="lombok.Setter"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.BU.springboot.backend.apirest.models.util.ClienteSingleton"/>
+    <fullyQualifiedTypeName name="com.BU.springboot.backend.apirest.models.entity.Cliente"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="com.BU.springboot.backend.apirest.models.entity.Producto"/>
+    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="com.BU.springboot.backend.apirest.models.entity.Factura"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.BU.springboot.backend.apirest.models.entity.ItemFactura"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="com.BU.springboot.backend.apirest.models.entity.Region"/>
+    <fullyQualifiedTypeName name="com.BU.springboot.backend.apirest.DTO.ClienteDTO"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,17 @@
+package com.BU.springboot.backend.apirest.DTO;
+
+import lombok.Data;
+
+@Data
+public class ItemFacturaDTO {
+    public ItemFacturaDTO(Long id, Integer cantidad, ProductoDTO producto) {
+		super();
+		this.id = id;
+		this.cantidad = cantidad;
+		this.producto = producto;
+	}
+	private Long id;
+    private Integer cantidad;
+    private ProductoDTO producto;
+
+}

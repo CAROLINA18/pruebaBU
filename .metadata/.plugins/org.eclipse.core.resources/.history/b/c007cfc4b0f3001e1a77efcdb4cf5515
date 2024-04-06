@@ -1,0 +1,33 @@
+package com.BU.springboot.backend.apirest.DTO;
+
+import java.sql.Date;
+import java.util.List;
+
+import com.BU.springboot.backend.apirest.models.entity.Region;
+
+import lombok.Data;
+
+
+@Data
+public class ClienteDTO {
+    public ClienteDTO(Long id, String nombre, String apellido, String email, Date createAt, String foto,
+			RegionDTO region, List<FacturaDTO> facturas) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.createAt = createAt;
+		this.foto = foto;
+		this.region = region;
+		this.facturas = facturas;
+	}
+	private Long id;
+    private String nombre;
+    private String apellido;
+    private String email;
+    private Date createAt;
+    private String foto;
+    private RegionDTO region;
+    private List<FacturaDTO> facturas;
+}

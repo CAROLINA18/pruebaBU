@@ -1,0 +1,23 @@
+package com.BU.springboot.backend.apirest.DTO;
+
+
+
+import java.util.Date;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+public class ProductoDTO {
+	
+	public ProductoDTO(Long id, String nombre, Double precio, Date createAt) {
+		this.id = id;
+		this.nombre = nombre;
+		this.precio = precio;
+		this.createAt = createAt;
+	}
+	private Long id;
+    private String nombre;
+    private Double precio;
+    private Date createAt;
+}

@@ -1,0 +1,5 @@
+package com.BU.springboot.backend.apirest.DTO;
+
+public class ClienteDTO {
+
+}

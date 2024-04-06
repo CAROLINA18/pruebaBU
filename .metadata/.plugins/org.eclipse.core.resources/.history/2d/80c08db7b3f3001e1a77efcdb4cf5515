@@ -1,0 +1,12 @@
+package com.BU.springboot.backend.apirest.DTO;
+
+import com.BU.springboot.backend.apirest.models.entity.Region;
+
+public class RegionConverter {
+    public static RegionDTO toDTO(Region region) {
+        return new RegionDTO(
+            region.getId(),
+            region.getNombre()
+        );
+    }
+}

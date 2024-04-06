@@ -1,0 +1,28 @@
+package com.BU.springboot.backend.apirest.DTO;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.BU.springboot.backend.apirest.models.entity.Factura;
+import com.BU.springboot.backend.apirest.models.entity.ItemFactura;
+
+public class FacturaConverter {
+    public static FacturaDTO toDTO(Factura factura) {
+        return new FacturaDTO(
+            factura.getId(),
+            factura.getDescripcion(),
+            factura.getObservacion(),
+            factura.getCreateAt(),
+            ClienteConverter.toDTO(factura.getCliente()),
+            convertirListaItems(factura.getItems())
+        );
+    }
+
+    private static List<ItemFacturaDTO> convertirListaItems(List<ItemFactura> items) {
+        List<ItemFacturaDTO> itemFacturaDTOs = new ArrayList<>();
+        for (ItemFactura item : items) {
+            itemFacturaDTOs.add(ItemFacturaConverter.toDTO(item));
+        }
+        return itemFacturaDTOs;
+    }
+}
