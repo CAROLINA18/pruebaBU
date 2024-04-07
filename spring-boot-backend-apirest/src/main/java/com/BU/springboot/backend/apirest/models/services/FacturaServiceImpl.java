@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.BU.springboot.backend.apirest.DTO.FacturaDTO;
 import com.BU.springboot.backend.apirest.DTO.ProductoDTO;
-import com.BU.springboot.backend.apirest.DTO.RegionDTO;
 import com.BU.springboot.backend.apirest.models.dao.IFacturaDao;
 import com.BU.springboot.backend.apirest.models.dao.IProductoDao;
 import com.BU.springboot.backend.apirest.models.entity.Factura;
